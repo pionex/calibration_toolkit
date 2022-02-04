@@ -32,6 +32,8 @@
 #include <image_geometry/pinhole_camera_model.h>
 #include <calibration_common/color/camera_model.h>
 
+#include <opencv4/opencv2/calib3d.hpp>
+
 namespace calibration
 {
 
@@ -79,7 +81,7 @@ public:
 
   //virtual Point3 projectPixelTo3dRay(const Point2 & pixel_point) const;
 
-  //virtual Point2 project3dToPixel(const Point3 & world_point) const;
+  virtual Point2 project3dToPixel(const Point3 & world_point) const;
 
   //virtual void projectPixelTo3dRay(const Cloud2 & pixel_points,
   //                                 Cloud3 & world_points) const;

@@ -28,6 +28,8 @@
 
 #include <calibration_common/pinhole/camera_model.h>
 
+#include <opencv4/opencv2/calib3d.hpp>
+
 namespace calibration
 {
 
@@ -46,6 +48,7 @@ namespace calibration
 
   return ray;
 }
+ */
 
 Point2 PinholeCameraModel::project3dToPixel(const Point3 & world_point) const
 {
@@ -62,6 +65,7 @@ Point2 PinholeCameraModel::project3dToPixel(const Point3 & world_point) const
   return uv_rect;
 }
 
+/*
 void PinholeCameraModel::projectPixelTo3dRay(const Cloud2 & pixel_points,
                                              Cloud3 & world_points) const
 {
@@ -109,12 +113,12 @@ void PinholeCameraModel::project3dToPixel2(const Cloud3 & world_points,
   project3dToPixel2<double>(world_points, pixel_points);
 }
 
-/*Cloud2 PinholeCameraModel::project3dToPixel(const Cloud3 & world_points) const
-{
-  Cloud2 pixel_points(world_points.size());
-  project3dToPixel(world_points, pixel_points);
-  return pixel_points;
-}*/
+//Cloud2 PinholeCameraModel::project3dToPixel(const Cloud3 & world_points) const
+//{
+//    Cloud2 pixel_points(world_points.size());
+//    project3dToPixel(world_points, pixel_points);
+//    return pixel_points;
+//}
 
 Cloud2 PinholeCameraModel::project3dToPixel2(const Cloud3 & world_points) const
 {

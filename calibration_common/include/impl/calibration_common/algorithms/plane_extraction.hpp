@@ -73,7 +73,7 @@ template <typename PointT_>
 template <typename PointT_>
   bool CheckerboardPlaneExtraction<PointT_>::extract(PlaneInfo & plane_info) const
   {
-
+    return false;
     /*float min_x = corners_.col(0).x(), max_x = min_x;
     float min_y = corners_.col(0).y(), max_y = min_y;
     for (int i = 1; i < 4; ++i)

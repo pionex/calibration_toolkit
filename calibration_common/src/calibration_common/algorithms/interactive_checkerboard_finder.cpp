@@ -58,7 +58,7 @@ bool InteractiveCheckerboardFinder::find(const Checkerboard & checkerboard,
   if (try_automatically)
   {
     cv::Mat gray;
-    cv::cvtColor(image_, gray, CV_BGR2GRAY);
+    cv::cvtColor(image_, gray, cv::COLOR_BGR2GRAY);
     pattern_found = findChessboardCorners(gray, pattern_size, corners_float_);
   }
   if (pattern_found)
@@ -83,7 +83,7 @@ bool InteractiveCheckerboardFinder::find(const Checkerboard & checkerboard,
       cv::Mat sub_image;
       cv::Mat gray;
       cv::resize(image_(sub_image_rect_), sub_image, cv::Size(), i, i, cv::INTER_CUBIC);
-      cv::cvtColor(sub_image, gray, CV_BGR2GRAY);
+      cv::cvtColor(sub_image, gray, cv::COLOR_BGR2GRAY);
 
       if (automatic)
       {
@@ -102,7 +102,7 @@ bool InteractiveCheckerboardFinder::find(const Checkerboard & checkerboard,
                          corners_float_,
                          cv::Size(i * 6, i * 6),
                          cv::Size(-1, -1),
-                         cv::TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 100, 0.01));
+                         cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::MAX_ITER, 100, 0.01));
 
       for (unsigned int j = 0; j < corners_float_.size(); ++j)
       {
@@ -146,7 +146,7 @@ void InteractiveCheckerboardFinder::selectCornersCallback(int event,
   InteractiveCheckerboardFinder* cf = (InteractiveCheckerboardFinder*)param;
   switch (event)
   {
-    case CV_EVENT_LBUTTONUP:
+      case cv::EVENT_LBUTTONUP:
     {
       cv::Point2f p(x, y);
       cf->corners_float_.push_back(p);
@@ -164,13 +164,13 @@ void InteractiveCheckerboardFinder::selectSubImageCallback(int event,
   InteractiveCheckerboardFinder* cf = (InteractiveCheckerboardFinder*)param;
   switch (event)
   {
-    case CV_EVENT_LBUTTONDOWN:
+      case cv::EVENT_LBUTTONDOWN:
     {
       cf->sub_image_rect_.x = x;
       cf->sub_image_rect_.y = y;
       break;
     }
-    case CV_EVENT_LBUTTONUP:
+      case cv::EVENT_LBUTTONUP:
     {
       int min_x = std::min(x, cf->sub_image_rect_.x);
       int min_y = std::min(y, cf->sub_image_rect_.y);

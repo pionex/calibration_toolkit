@@ -65,7 +65,7 @@ public:
   inline void setImage(const cv::Mat & image)
   {
     image_ = image;
-    cv::cvtColor(image_, gray_, CV_BGR2GRAY);
+    cv::cvtColor(image_, gray_, cv::COLOR_BGR2GRAY);
   }
 
   /**
